@@ -20,7 +20,7 @@
 %%--------------------
 %% Declare the LaTeX class
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{spimutbmphdthesis}[2014/03/03]
+\ProvidesClass{spimutbmphdthesis}[2015/07/07]
 
 %%--------------------
 %% Class options
@@ -44,43 +44,14 @@
 \expandafter\LoadClass[\edspimphdthesisclasslanguage,\edspim@phdthesis@class@options]{upmethodology-document}
 
 %%--------------------
-%% Check for the correct version of tex-upmethodology
-\@ifclasslater{UPMVERSION}{2014/03/02}{}{\@latex@error{You must install a version of tex-upmethodology greater or equal to 20140303}\@eha}
-
-%%--------------------
-%% Utility functions
-\gdef\edspim@phdthesis@class@firstword#1 #2\@nil{#1}
-\gdef\edspim@phdthesis@class@nextwords#1 #2\@nil{#2}
-\gdef\edspim@phdthesis@class@firstcolumn#1,#2\@nil{#1}
-\gdef\edspim@phdthesis@class@nextcolumns#1,#2\@nil{#2}
-\gdef\edspim@phdthesis@class@makejury{}
-\gdef\edspim@phdthesis@class@addjury#1#2{%
-	\addjury%
-		{\expandafter\edspim@phdthesis@class@firstword\edspim@phdthesis@class@firstcolumn#2\@nil\@nil}%
-		{\expandafter\edspim@phdthesis@class@nextwords\edspim@phdthesis@class@firstcolumn#2\@nil\@nil}%
-		{#1}%
-		{\edspim@phdthesis@class@nextcolumns#2\@nil}%
-}
+%% Load the base package
+\RequirePackage{spimbasephdthesis}
 
 %%--------------------
 %% Use the style dedicated to PhD thesis from SPIM-UTBM
 \UseExtension{spimutbmphdthesis}
 
-%%--------------------
-%% Force the name of the bibliography and other sections for French
-\AtBeginDocument{
-	\ifthenelse{\equal{\edspimphdthesisclasslanguage}{french}}{%
-		\renewcommand{\refname}{Bibliographie}%
-		\renewcommand{\listtablename}{Liste des tables}%
-	}{}
-}
-
-%%--------------------
-%% Style for boxed definitions
-\colorlet{definitionbackground}{backtableheader!60}
-\colorlet{definitionheaderforeground}{fronttableheader}
-\colorlet{definitionborder}{gray!60}
-\colorlet{definitiontextforeground}{black}
-
+% Add the default partner: the IRTES
+\addpartner{irteslogo}
 
 \endinput
